@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Gally Vágó</title>
+</head>
+<body>
+    <div class="topnav">
+        <a href="index.html">Otthon</a>
+        <a class="active" href="programozas.html">Programozás</a>
+        <a href="halozati.html">Hálózati</a>
+      </div>
+    <div class="box1">
+    <p class="nemkod">Fájl beolvasás, OOB:</p>
+    <p class="kod">class Epulet:</p>
+    <p class="kod">def __init__(self, sor):</p>
+        <p class="kod" style="padding-left: 40px;">nev, varos, orszag, magassag, emelet, epult = sor.split(';')</p>
+        <p class="kod" style="padding-left: 40px;">self.nev = nev</p>
+        <p class="kod" style="padding-left: 40px;">self.varos = varos</p>
+        <p class="kod" style="padding-left: 40px;">self.orszag = orszag</p>
+        <p class="kod" style="padding-left: 40px;">self.magassag = float(magassag.replace(',', '.')) if magassag != 'NULL' else 0</p>
+        <p class="kod" style="padding-left: 40px;">self.emelet = int(emelet)</p>
+        <p class="kod" style="padding-left: 40px;">self.epult = int(epult)</p>
+
+    <p class="kod">epuletek = []</p>
+    <p class="kod">with open('legmagasabb.txt', 'r', encoding='utf-8') as f:</p>
+        <p class="kod" style="padding-left: 40px;">for sor in f.read().splitlines()[1:]:</p>
+        <p class="kod" style="padding-left: 40px;">epuletek.append(Epulet(sor))</p>
+        
+    </div>
+    <a href="https://sulipy.hu">help</a>
+</body>
+</html>

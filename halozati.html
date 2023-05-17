@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Gally Vágó</title>
+</head>
+<body>
+    <div class="topnav">
+        <a href="index.html">Otthon</a>
+        <a href="programozas.html">Programozás</a>
+        <a class="active" href="halozati.html">Hálózati</a>
+      </div>
+      <div class="box1">
+        <p class="nemkod">1. Állítsuk be az eszköz nevét.</p>
+        <p class="kod">Router(config)# hostname</p>
+        <p class="nemkod">2. Tegyük biztonságossá a privilegizált EXEC módot.</p>
+        <p class="kod">Router(config)# enable secret password</p>
+        <p class="nemkod">3. Tegyük biztonságossá a felhasználói EXEC mód hozzáférését.</p>
+        <p class="kod">Router(config)# line console 0</p>
+        <p class="kod">Router(config-line)# password password</p>
+        <p class="kod">Router(config-line)# login</p>
+        <p class="nemkod">4. Tegyük biztonságossá a Telnet / SSH távelérést.</p>
+        <p class="kod">Router(config-line)# line vty 0 4</p>
+        <p class="kod">Router(config-line)# password password</p>
+        <p class="kod">Router(config-line)# login</p>
+        <p class="kod">Router(config-line)# transport input {ssh | telnet}</p>
+        <p class="nemkod">5. Tegyük biztonságossá a konfigurációs fájlban tárolt összes jelszót.</p>
+        <p class="kod">Router(config-line)# exit</p>
+        <p class="kod">Router(config)# service password-encryption</p>
+        <p class="nemkod">6. Jelenítsünk meg egy jogos használatra vonatkozó üzenetet.</p>
+        <p class="kod">Router(config)# banner motd delimiter message delimiter</p>
+        <p class="nemkod">7. Mentsük el a beállításokat!</p>
+        <p class="kod">Router(config)# end</p>
+        <p class="kod">Router# copy running-config startup-config</p>
+        <p class="nemkod">Az R1 eszköznevének beállításához használjuk a következő parancsokat.</p>
+        <p class="kod">Router> enable</p>
+        <p class="kod">Router# configure terminal</p>
+        <p class="kod">Enter configuration commands, one per line.</p>
+        <p class="kod">End with CNTL/Z.</p>
+        <p class="kod">Router(config)# hostname R1</p>
+        <p class="kod">R1(config)#</p>
+      </div>
+      <div class="box1">
+        <p class="nemkod">Üzemmódok:</p>
+        <p class="nemkod">privilégizált felhasználói módba váltás:</p> 
+        <p class="kod">Router>enable (en), kilépés: exit </p>
+        <p class="kod">globális konfigurációs módba váltás:  </p>
+        <p class="kod">Router#configure terminal (conf t), kilépés: exit </p>
+        <p class="nemkod">speciális konfigurációs módba váltás: </p> 
+        <p class="kod">Router(config)# változó, kilépés: exit, end </p>
+        <p class="nemkod">Állomásnév megadása: </p>
+        <p class="kod">Router(config)#hostname R1</p> 
+        <p class="nemkod">Domain név megadás:</p>
+        <p class="kod">R1(config)#ip domain-name teszt.hu</p>
+        <p class="nemkod">Állomástábla:</p>
+        <p class="kod">R1(config)# ip host R2 200.100.50.25</p>
+        <p class="nemkod">Konzol és telnet kapcsolatok megadása:</p>
+        <p class="kod">R1(config)#line con 0</p>
+        <p class="kod">R1(config-line)#speed 9600</p>
+        <p class="kod">R1(config-line)#password cisco</p>
+        <p class="kod">R1(config-line)#login</p>
+        <p class="kod">R1(config-line)#exit</p>
+        <p class="kod">R1(config)#line vty 0 5 (itt 6 párhuzamos kapcsolat lehetséges, maximum 16 lehet összesen)</p>
+        <p class="kod">R1(config-line)#password cisco</p>
+        <p class="kod">R1(config-line)#login</p>
+        <p class="kod">R1(config-line)#exit</p>
+        <p class="nemkod">Privilegizált (EXEC) üzemmód titkosítatlan (cisco) és titkosított jelszavának (class) megadása:</p>
+        <p class="kod">R1(config)#enable password cisco</p>
+        <p class="kod">R1(config)#enable secret class</p>
+        <p class="nemkod">Biztonságosabb jelszó beállítás:</p>
+        <p class="kod">R1(config)#enable algorithm-type md5 | sha256 | scrypt secret class</p>
+        <p class="nemkod">Jelszó titkosítás engedélyezése (minden jelszót titkosít):</p>
+        <p class="kod">R1(config)#service password-encryption</p>
+        <p class="nemkod">Jelszó biztonsági megoldások megadása:</p>
+        <p class="kod">R1(config)#security passwords min-length 10 minimális jelszó hossz</p>
+        <p class="kod">R1(config)#login block-for 120 attempts 5 within 60 2 perces tiltás 1 percen belül 5 rossz  próba után</p>
+        <p class="nemkod">Bizonyos címekről bejelentkezés engedélyezése blokkolás alatt:</p>
+        <p class="kod">R1(config)#login quiet-mode access-class szám ellenőrzés az access-list szerint</p>
+        <p class="kod">R1(config)#login quiet-mode access-class 1 ellenőrzés az 1 számú access-list szerint</p>
+        <p class="nemkod">Bejelentkezési idő korlátozása:</p>
+        <p class="kod">R1(config)#login block-for 180 attempts 3 within 60 3 próbálkozás 180 másodpercen belül, a 3. próbálkozástól 60 másodperces tiltás</p>
+        <p class="nemkod">Cím alapú bejelentkezés:</p>
+        <p class="kod">R1(config)#aaa new-model</p>
+        <p class="kod">R1(config)#aaa authentication login alap local (alapértelmezett lista)</p>
+        <p class="kod">R1(config)#line vty 0 5</p>
+        <p class="kod">R1(config-line)#login authentication alap</p>
+        <p class="kod">R1(config-line)#exit</p>
+        <p class="kod">R1(config)#aaa authentication login cons local (konzol)</p>
+        <p class="kod">R1(config)#line con 0</p>
+        <p class="kod">R1(config-line)#login authentication cons</p>
+        <p class="kod">R1(config-line)#exit</p>
+        <p class="nemkod">Alapértelmezett átjáró megadása:</p>
+        <p class="kod">Switch(config)#ip default-gateway 10.0.0.254</p>
+        <p class="nemkod">DHCPv4 szerver beállítása: </p>
+        <p class="kod">R1(config)#ip dhcp pool lan1 </p>
+        <p class="kod">R1(config-dhcp)#network 192.168.0.0 255.255.255.0 </p>
+        <p class="kod">R1(config-dhcp)#default-router 192.168.0.1 </p>
+        <p class="kod">R1(config-dhcp)#dns-server 1.2.3.4 </p>
+        <p class="nemkod">RIP protokoll beállítása:</p>
+        <p class="kod">R1(config)#router rip</p>
+        <p class="kod">R1(config-router)#version 2</p>
+        <p class="kod">R1(config-router)#network 10.10.10.2</p>
+        <p class="kod">R1(config-router)#network 192.168.100.1</p>
+      </div>
+</body>
+</html>
